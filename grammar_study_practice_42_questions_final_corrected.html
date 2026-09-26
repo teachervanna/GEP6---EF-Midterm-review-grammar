@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Grammar Study Practice – 42 Questions</title><style>
+:root{--blue:#2563eb;--blue2:#dbeafe;--blue3:#eff6ff;--dark:#1e293b;--green:#16a34a;--red:#dc2626;--border:#cbd5e1}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;color:var(--dark);background:linear-gradient(135deg,#eef4ff,#f8fafc 50%,#eaf2ff)}
+.container{max-width:1050px;margin:auto;padding:24px}
+header{background:linear-gradient(135deg,#2563eb,#1d4ed8);color:#fff;border-radius:24px;padding:28px 30px;margin-bottom:22px;box-shadow:0 10px 30px rgba(37,99,235,.18)}
+header h1{margin:0 0 8px;font-size:30px} header p{margin:5px 0;opacity:.96}
+.progress-wrap{margin-top:18px;background:rgba(255,255,255,.25);height:10px;border-radius:99px;overflow:hidden}.progress{height:100%;width:0;background:#fff;transition:.3s}
+.task{background:#fff;border:2px solid var(--blue2);border-radius:20px;padding:24px;margin:20px 0;box-shadow:0 5px 18px rgba(37,99,235,.07)}
+.task h2{margin:0 0 7px;color:#1d4ed8;font-size:23px}.instruction{margin:0 0 18px;color:#526174}
+.q{border:1px solid #dbe4f0;background:#f8fbff;border-radius:14px;padding:15px;margin:12px 0}
+.qnum{font-weight:bold;color:#1d4ed8;margin-right:6px}.question{line-height:1.55;margin-bottom:10px}
+.wordbank{font-size:17px;font-weight:600;letter-spacing:.2px;background:#fff;border:1px dashed #93c5fd;border-radius:10px;padding:11px 13px;margin-bottom:10px}
+input[type=text]{width:100%;padding:11px 13px;border:2px solid #cbd5e1;border-radius:10px;font-size:16px;outline:none}
+input[type=text]:focus{border-color:#2563eb}.feedback{display:none;margin-top:9px;font-size:14px;font-weight:bold}.feedback.show{display:block}.feedback.ok{color:var(--green)}.feedback.no{color:var(--red)}.answer{font-weight:normal;color:#555}
+.correct{border-color:#86efac!important;background:#f0fdf4!important}.wrong{border-color:#fca5a5!important;background:#fef2f2!important}
+.sequence-item{display:flex;gap:10px;align-items:flex-start;padding:11px 0;border-bottom:1px solid #e5e7eb}
+.sequence-item:last-child{border-bottom:0}
+.sequence-list{display:flex;flex-direction:column;gap:8px}
+.sequence-item{display:flex;gap:9px;align-items:center;padding:10px;border:1px solid #dbe4f0!important;border-radius:10px;background:#fff;cursor:grab!important}
+.sequence-item.dragging{opacity:.45;border:2px dashed #2563eb!important}
+.sequence-item.over{border-top:4px solid #2563eb!important}
+.drag-handle{font-size:18px;color:#64748b}
+.move-btn{border:1px solid #bfdbfe;background:#eff6ff;color:#1d4ed8;border-radius:7px;padding:4px 8px;font-weight:bold;cursor:pointer;box-shadow:none;font-size:14px}
+.move-btn:hover{background:#dbeafe}
+.seq-text{flex:1;line-height:1.45}
+.letter{min-width:30px;height:30px;border-radius:8px;background:#dbeafe;color:#1d4ed8;font-weight:bold;display:flex;align-items:center;justify-content:center}
+.sequence-instruction{background:#eff6ff;border-left:4px solid #2563eb;padding:11px 13px;border-radius:8px;margin-bottom:14px}
+.actions{text-align:center;margin:26px 0}
+button{border:0;border-radius:14px;padding:14px 26px;font-size:17px;font-weight:bold;cursor:pointer;background:linear-gradient(135deg,#2563eb,#1d4ed8);color:#fff;box-shadow:0 8px 18px rgba(37,99,235,.25)}
+#result{display:none;background:#fff;border:3px solid #2563eb;border-radius:22px;padding:25px;text-align:center;margin:20px 0}
+#score{font-size:34px;color:#1d4ed8;font-weight:800}.breakdown{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:15px}.pill{background:#eff6ff;border:1px solid #bfdbfe;padding:8px 12px;border-radius:99px;font-size:14px}.note{font-size:13px;color:#64748b}
+@media(max-width:650px){header h1{font-size:24px}.container{padding:12px}.task{padding:16px}}
+</style></head>
+<body><div class="container">
+<header><h1>📚 Grammar Study Practice</h1>
+<p>Word Order + Grammar (1A–2B) + Time Sequencers (2C)</p>
+<p><strong>42 questions</strong> • Complete all tasks, then click <strong>Check My Answers</strong>.</p>
+<div class="progress-wrap"><div class="progress" id="progress"></div></div></header>
+<form id="quiz">
+<section class="task">
+<h2>Task 1 – Word Order (1A–2B)</h2>
+<p class="instruction">🔀 Put the words in the correct order. Type the complete sentence or question.</p>
+<div id="wordOrder"></div>
+</section>
+
+<section class="task">
+<h2>Task 2 – Choose the Correct Grammar</h2>
+<p class="instruction">Choose the correct answer. This task reviews 1B Present Simple, 1C Present Continuous, 2A Past Simple, and 2B Past Continuous.</p>
+<div id="grammar"></div>
+</section>
+
+<section class="task">
+<h2>Task 3 – 2C Time Sequencers</h2>
+<p class="instruction">Move the sentences into the correct order. <strong>You do not need to type the answer.</strong></p>
+<div class="sequence-instruction">💡 <strong>How to answer:</strong> Drag a sentence up or down to move it. On a phone or tablet, you can also use the <strong>↑</strong> and <strong>↓</strong> buttons. Put the first sentence at the top and the last sentence at the bottom. Look for clues such as <strong>Last week, when, then, after that, a few seconds later, the next day</strong>.</div>
+<div id="seqTasks"></div>
+</section>
+
+<div class="actions"><button type="button" onclick="checkAnswers()">✅ Check My Answers</button></div>
+</form>
+<div id="result"><div>🎉 Your Score</div><div id="score"></div><div id="message"></div><div class="breakdown" id="breakdown"></div>
+<p class="note">Incorrect questions show the correct answer after submission.</p>
+<button type="button" onclick="resetQuiz()">🔄 Try Again</button></div>
+</div>
+<script>
+const wordOrder = [
+["Where / you / do / live?","Where do you live?"],
+["does / your sister / What / do?","What does your sister do?"],
+["you / with / Do / your parents / live?","Do you live with your parents?"],
+["did / When / you / start / studying English?","When did you start studying English?"],
+["they / What / did / talk / about?","What did they talk about?"],
+["born / Where / were / you?","Where were you born?"],
+["usually / at home / I / work.","I usually work at home."],
+["not / My parents / near here / live / do.","My parents do not live near here."],
+["now / are / What / you / doing?","What are you doing now?"],
+["last summer / stayed / We / at a hotel.","We stayed at a hotel last summer."]
+];
+
+const grammarSections = [
+{title:"1B – Present Simple", items:[
+["My brother ___ in the city centre.","works",["work","works","is working","working"]],
+["___ you speak French?","Do",["Are","Does","Do","Did"]],
+["She ___ pop music.","likes",["like","is liking","likes","does like"]],
+["My parents ___ near here.","don't live",["aren't live","doesn't live","don't live","not live"]],
+["He ___ always late for work.","is",["does","is","has","was"]],
+["We ___ English twice a week.","study",["studies","are study","study","studying"]],
+["___ your sister work here?","Does",["Do","Does","Is","Did"]],
+["He ___ never late for class.","is",["does","is","has","was"]]
+]},
+{title:"1C – Present Continuous", items:[
+["What ___ you ___ now?","are / doing",["do / do","are / doing","is / doing","are / do"]],
+["I ___ a message to Sarah.","am sending",["send","sending","am sending","is sending"]],
+["My brother ___ a course in the UK this month.","is doing",["does","is doing","doing","do"]],
+["The woman ___ near a table.","is standing",["stands","standing","is standing","stand"]],
+["We ___ English this week.","are studying",["study","are studying","studies","is studying"]],
+["Look! The children ___.","are running",["run","running","are running","is running"]],
+["Why ___ he ___?","is / crying",["does / cry","is / crying","is / cry","does / crying"]],
+["They ___ TV right now.","are watching",["watch","is watching","are watching","watching"]]
+]},
+{title:"2A – Past Simple", items:[
+["We ___ at a hotel last summer.","stayed",["stay","stayed","were staying","stays"]],
+["I ___ to Spain twice last year.","went",["go","went","goed","was going"]],
+["He ___ with his friends last weekend.","stayed",["stays","stayed","was staying","stay"]],
+["___ you stay at home yesterday?","Did",["Do","Did","Were","Does"]],
+["Where ___ you go last Saturday?","did",["do","did","were","does"]],
+["She ___ a new phone two days ago.","bought",["buy","bought","buyed","was buying"]],
+["They ___ the film last night.","watched",["watch","watched","were watching","watches"]]
+]},
+{title:"2B – Past Continuous", items:[
+["At 8.45 last Saturday, I ___ in the park.","was walking",["walked","were walking","was walking","am walking"]],
+["At 9 p.m. yesterday, the birds ___.","were singing",["sang","were singing","was singing","are singing"]],
+["At 7 o'clock last night, it ___ raining.","wasn't",["didn't","weren't","wasn't","not"]],
+["___ it raining at 6 a.m. yesterday?","Was",["Did","Were","Was","Is"]],
+["What ___ you ___ at 11 o'clock last night?","were / doing",["did / do","were / doing","was / doing","are / doing"]],
+["At midnight last night, I ___ TV.","was watching",["watched","were watching","was watching","am watching"]],
+["At 1 p.m. yesterday, my sister ___ lunch.","was having",["had","were having","was having","is having"]]
+]}];
+
+const seqData=[
+{items:[
+["A","He explained that he was looking for a thief, and then he got on the bus."],
+["B","Then another man tried to do the same."],
+["C","Last week I was waiting for a bus."],
+["D","The next day, I saw the story on a local news website."],
+["E","When I asked the second man what he was doing, he told me that he was a police officer."],
+["F","A few seconds later, he got off the bus with the thief."],
+["G","The bus arrived, but suddenly a man ran in front of me and got on."],
+["H","After that, a police car came and took the thief away."]],answer:"C-G-E-B-F-A-H-D"},
+{items:[
+["A","I arrived at the café at 9:00."],
+["B","Then we ordered some coffee."],
+["C","After that, my friend told me some exciting news."],
+["D","When I got there, my friend was already waiting for me."],
+["E","A few minutes later, we found a quiet table."],
+["F","The next day, I told my sister the story."],
+["G","We talked for a few minutes before ordering."]],answer:"ADEGBCF"}
+];
+
+const totalQuestions=42;
+function render(){
+ document.getElementById('wordOrder').innerHTML=wordOrder.map((q,i)=>`<div class="q" id="q-w-${i}"><div class="question"><span class="qnum">${i+1}.</span>Put the words in order:</div><div class="wordbank">${q[0]}</div><input type="text" id="w-${i}" autocomplete="off" placeholder="Type your answer..."><div class="feedback" id="fb-w-${i}"></div></div>`).join('');
+ let n=10;
+ document.getElementById('grammar').innerHTML=grammarSections.map((sec,si)=>`<div style="margin-top:20px"><h3 style="color:#1d4ed8;margin-bottom:8px">${sec.title}</h3>${sec.items.map((q,i)=>{n++;let id=`g-${si}-${i}`;return `<div class="q" id="q-${id}"><div class="question"><span class="qnum">${n}.</span>${q[0]}</div><div class="options">${q[2].map((opt,j)=>`<label class="option" id="opt-${id}-${j}" style="display:block;border:1px solid #dbe4f0;background:#fff;border-radius:10px;padding:10px;margin:7px 0;cursor:pointer"><input type="radio" name="${id}" value="${opt.replace(/"/g,'&quot;')}"> ${opt}</label>`).join('')}</div><div class="feedback" id="fb-${id}"></div></div>`}).join('')}</div>`).join('');
+
+ document.getElementById('seqTasks').innerHTML=seqData.map((set,i)=>{
+   const id=`s-${i}`;
+   const shuffled=[...set.items].sort(()=>Math.random()-0.5);
+   return `<div class="q" id="q-${id}">
+     <div class="question"><span class="qnum">Exercise ${i+1}.</span> Drag the sentences into the correct order:</div>
+     <div class="sequence-list" id="${id}-list">
+       ${shuffled.map(x=>`<div class="sequence-item" draggable="true" data-letter="${x[0]}">
+         <span class="drag-handle">☷</span><span class="letter">${x[0]}</span><span class="seq-text">${x[1]}</span>
+         <button type="button" class="move-btn" onclick="moveSeq(this,-1)" aria-label="Move up">↑</button>
+         <button type="button" class="move-btn" onclick="moveSeq(this,1)" aria-label="Move down">↓</button>
+       </div>`).join('')}
+     </div>
+     <div class="feedback" id="fb-${id}"></div>
+   </div>`;
+ }).join('');
+ setupDragAndDrop();
+}
+function setupDragAndDrop(){
+ document.querySelectorAll('.sequence-list').forEach(list=>{
+   let dragged=null;
+   list.querySelectorAll('.sequence-item').forEach(item=>{
+     item.addEventListener('dragstart',e=>{dragged=item;item.classList.add('dragging');e.dataTransfer.effectAllowed='move';});
+     item.addEventListener('dragend',()=>{item.classList.remove('dragging');list.querySelectorAll('.sequence-item').forEach(x=>x.classList.remove('over'));dragged=null;});
+     item.addEventListener('dragover',e=>{e.preventDefault();if(dragged&&dragged!==item)item.classList.add('over');});
+     item.addEventListener('dragleave',()=>item.classList.remove('over'));
+     item.addEventListener('drop',e=>{
+       e.preventDefault();item.classList.remove('over');
+       if(!dragged||dragged===item)return;
+       const rect=item.getBoundingClientRect();
+       if(e.clientY>rect.top+rect.height/2)item.after(dragged);else item.before(dragged);
+     });
+   });
+ });
+}
+function moveSeq(btn,dir){
+ const item=btn.closest('.sequence-item');
+ if(dir<0&&item.previousElementSibling)item.parentElement.insertBefore(item,item.previousElementSibling);
+ if(dir>0&&item.nextElementSibling)item.parentElement.insertBefore(item.nextElementSibling,item);
+}
+function norm(s){return s.toLowerCase().trim().replace(/[?.!]+$/g,'').replace(/\s+/g,' ')}
+function normOrder(s){return s.toUpperCase().trim().replace(/\s+/g,'').replace(/[>,]/g,'-')}
+function checkAnswers(){
+ let score=0, parts=[];
+ let c1=0; wordOrder.forEach((q,i)=>{let ok=norm(document.getElementById(`w-${i}`).value)===norm(q[1]);let box=document.getElementById(`q-w-${i}`),fb=document.getElementById(`fb-w-${i}`);box.classList.remove('correct','wrong');box.classList.add(ok?'correct':'wrong');fb.className='feedback show '+(ok?'ok':'no');fb.innerHTML=ok?'✓ Correct!':`✗ Correct answer: <span class="answer">${q[1]}</span>`;if(ok){score++;c1++;}});parts.push(`<span class="pill">Word Order: ${c1}/10</span>`);
+ grammarSections.forEach((sec,si)=>{let c=0;sec.items.forEach((q,i)=>{let id=`g-${si}-${i}`,sel=document.querySelector(`input[name="${id}"]:checked`),ok=!!sel&&norm(sel.value)===norm(q[1]);let box=document.getElementById(`q-${id}`),fb=document.getElementById(`fb-${id}`);box.classList.remove('correct','wrong');box.classList.add(ok?'correct':'wrong');q[2].forEach((o,j)=>{let el=document.getElementById(`opt-${id}-${j}`);el.classList.remove('correct','wrong');if(norm(o)===norm(q[1]))el.classList.add('correct');if(sel&&norm(o)===norm(sel.value)&&!ok)el.classList.add('wrong');});fb.className='feedback show '+(ok?'ok':'no');fb.innerHTML=ok?'✓ Correct!':`✗ Correct answer: <span class="answer">${q[1]}</span>`;if(ok){score++;c++;}});parts.push(`<span class="pill">${sec.title}: ${c}/${sec.items.length}</span>`);});
+ let cs=0;seqData.forEach((set,i)=>{let id=`s-${i}`,list=document.getElementById(`${id}-list`),current=[...list.querySelectorAll('.sequence-item')].map(el=>el.dataset.letter).join('-'),ok=current.replace(/-/g,"")===set.answer.replace(/-/g,""),box=document.getElementById(`q-${id}`),fb=document.getElementById(`fb-${id}`);box.classList.remove('correct','wrong');box.classList.add(ok?'correct':'wrong');fb.className='feedback show '+(ok?'ok':'no');fb.innerHTML=ok?'✓ Correct!':`✗ Correct order: <span class="answer">${set.answer.split("").join(" → ")}</span>`;if(ok){score++;cs++;}});parts.push(`<span class="pill">2C Time Sequencers: ${cs}/2</span>`);
+ let pct=Math.round(score/totalQuestions*100);document.getElementById('score').textContent=`${score} / ${totalQuestions} (${pct}%)`;document.getElementById('message').textContent=pct>=90?'Excellent work! 🌟':pct>=75?'Great job! Keep practising! 👏':pct>=60?'Good effort! Review the incorrect answers. 💪':'Keep practising—you can improve! 📚';document.getElementById('breakdown').innerHTML=parts.join('');document.getElementById('result').style.display='block';document.getElementById('result').scrollIntoView({behavior:'smooth',block:'start'});
+}
+function resetQuiz(){document.getElementById('quiz').reset();document.getElementById('result').style.display='none';render();updateProgress();window.scrollTo({top:0,behavior:'smooth'});}
+function updateProgress(){let a=0;wordOrder.forEach((_,i)=>{if(document.getElementById(`w-${i}`).value.trim())a++;});grammarSections.forEach((s,si)=>s.items.forEach((_,i)=>{if(document.querySelector(`input[name="g-${si}-${i}"]:checked`))a++;}));seqData.forEach((_,i)=>{if(document.getElementById(`s-${i}-list`))a++;});document.getElementById('progress').style.width=(a/totalQuestions*100)+'%';}
+document.addEventListener('input',updateProgress);document.addEventListener('change',updateProgress);render();
+</script></body></html>
